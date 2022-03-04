@@ -1,16 +1,27 @@
 import { QueryAPI } from '@root/access';
 import { GetStaticPaths, GetStaticProps, GetStaticPropsContext } from 'next';
+import { useRouter } from 'next/router';
 import React from 'react';
-import { Card } from 'react-bootstrap';
+import { Button, Card } from 'react-bootstrap';
 import { TPost } from '.';
 
 const PostDetail = ({ post }: { post: TPost }) => {
+    const router = useRouter();
     return (
-        <Card>
+        <Card className='my-3 shadow'>
             <Card.Body>
                 <Card.Title>{post.title}</Card.Title>
                 <Card.Text>{post.body}</Card.Text>
             </Card.Body>
+            <Card.Footer>
+                <Button
+                    onClick={() => {
+                        router.push('/posts');
+                    }}
+                >
+                    Go Back
+                </Button>
+            </Card.Footer>
         </Card>
     );
 };
@@ -18,7 +29,7 @@ const PostDetail = ({ post }: { post: TPost }) => {
 export const getStaticPaths: GetStaticPaths = async () => {
     const { data } = await QueryAPI.post.getList<TPost[]>();
     const paths = data.map((entry) => ({
-        params: { postId: entry.id.toString() },
+        params: { postId: `${entry.id}` },
     }));
 
     return {

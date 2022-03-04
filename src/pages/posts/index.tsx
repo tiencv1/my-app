@@ -12,20 +12,18 @@ const Posts: NextPage<PostProps> = ({ postList }) => {
         <>
             <h1>Post List</h1>
             <Container fluid>
-                <Row md={3}>
-                    {postList.map(({ id, title, body }) => (
-                        <Card key={id}>
-                            <Card.Body>
-                                <Card.Title>
-                                    <Link href={`posts/${id}`}>
-                                        <a className='text-black'>{title}</a>
-                                    </Link>
-                                </Card.Title>
-                                <Card.Text>{body}</Card.Text>
-                            </Card.Body>
-                        </Card>
-                    ))}
-                </Row>
+                {postList.map(({ id, title, body }) => (
+                    <Card key={id} className='my-3 p-3 shadow rounded'>
+                        <Card.Body>
+                            <Card.Title>
+                                <Link href={`/posts/${id}`}>
+                                    <a className='text-black'>{title}</a>
+                                </Link>
+                            </Card.Title>
+                            <Card.Text>{body}</Card.Text>
+                        </Card.Body>
+                    </Card>
+                ))}
             </Container>
         </>
     );
