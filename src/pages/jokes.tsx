@@ -31,6 +31,8 @@ const Jokes: NextPage<{ joke: TJokes }> = ({ joke }) => {
 export const getServerSideProps: GetServerSideProps = async () => {
     const { data: joke } = await QueryAPI.jokes.getRandom();
 
+    if (!joke) return { notFound: true };
+
     return { props: { joke } };
 };
 

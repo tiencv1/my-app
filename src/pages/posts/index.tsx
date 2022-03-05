@@ -10,17 +10,18 @@ type PostProps = { postList: TPost[] };
 const Posts: NextPage<PostProps> = ({ postList }) => {
     return (
         <>
-            <h1>Post List</h1>
+            <h1 className='my-3 p-3'>Post List</h1>
             <Container fluid>
                 {postList.map(({ id, title, body }) => (
                     <Card key={id} className='my-3 p-3 shadow rounded'>
                         <Card.Body>
                             <Card.Title>
-                                <Link href={`/posts/${id}`}>
-                                    <a className='text-black'>{title}</a>
-                                </Link>
+                                {id} - {title}
                             </Card.Title>
                             <Card.Text>{body}</Card.Text>
+                            <Link href={`/posts/${id}`}>
+                                <a>Go to detail</a>
+                            </Link>
                         </Card.Body>
                     </Card>
                 ))}

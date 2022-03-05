@@ -7,3 +7,8 @@ export type TJokes = {
     url: string;
     value: string;
 };
+
+export type TBook = {
+    id: string;
+    content: string;
+};
