@@ -1,9 +1,3 @@
 [build]
   command = ""
   publish = ""
-
-[[redirects]]
-  from = "/*"
-  to = "/index.html"
-  status = 302
-  force = true
